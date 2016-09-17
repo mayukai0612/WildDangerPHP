@@ -9,32 +9,25 @@ $target_dir = "/var/www/html/DangerousAnimals/Images";
 $target_dir = $target_dir . "/" . basename($_FILES["file"]["name"]);
 
 if (isset($_POST['userid']) &&isset($_POST['tripid'])&& isset($_POST['category'])
-    && isset($_POST['tripTitle']) &&isset($_POST['departTime'])&&isset($_POST['returnTime'])
-    &&isset($_POST['lat']) &&isset($_POST['lgt'])&&isset($_POST['emergencyContactName'])
-    &&isset($_POST['emergencyContactPhone']) &&isset($_POST['emergencyContactEmail'])
-    &&isset($_POST['desc'])&&isset($_POST['imagefilename']))
+    && isset($_POST['tripContent']) &&isset($_POST['departTime'])&&isset($_POST['returnTime'])
+    &&isset($_POST['lat']) &&isset($_POST['lgt'])&&isset($_POST['imagefilename']))
 {
     $userid = $_POST['userid'];
     $tripid = $_POST['tripid'];
     $category = $_POST['category'];
-    $tripTitle = $_POST['tripTitle'];
+    $tripContent = $_POST['tripContent'];
     $departTime = $_POST['departTime'];
     $returnTime = $_POST['returnTime'];
     $lat = $_POST['lat'];
     $lgt = $_POST['lgt'];
-    $emergencyContactName = $_POST['emergencyContactName'];
-    $emergencyContactPhone = $_POST['emergencyContactPhone'];
-    $emergencyContactEmail = $_POST['emergencyContactEmail'];
-    $desc = $_POST['desc'];
     $imagefilename  = $_POST['imagefilename'];
 
 
 
 
     $sql = "UPDATE Trips SET departTime = '$departTime',returnTime = '$returnTime',
-          tripTitle = '$tripTitle',emergencyContactName = '$emergencyContactName',
-          emergencyContactEmail = '$emergencyContactEmail',category = '$category',
-          tripdesc = '$tripdesc',lat = '$lat',lgt = '$lgt',imagefilename = '$imagefilename' 
+          tripContent = '$tripContent',category = '$category',
+          lat = '$lat',lgt = '$lgt',imagefilename = '$imagefilename' 
           WHERE userid = '$userid' and tripid = '$tripid'";
 
 

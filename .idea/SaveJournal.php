@@ -5,23 +5,18 @@ include_once("db_connect.php");
 
 
 if (isset($_POST['userid']) &&isset($_POST['tripid'])&& isset($_POST['category'])
-    && isset($_POST['tripTitle']) &&isset($_POST['departTime'])&&isset($_POST['returnTime'])
-    &&isset($_POST['lat']) &&isset($_POST['lgt'])&&isset($_POST['emergencyContactName'])
-    &&isset($_POST['emergencyContactPhone']) &&isset($_POST['emergencyContactEmail'])
-    &&isset($_POST['desc']))
+    && isset($_POST['tripContent']) &&isset($_POST['departTime'])&&isset($_POST['returnTime'])
+    &&isset($_POST['lat']) &&isset($_POST['lgt']))
 {
     $userid = $_POST['userid'];
     $tripid = $_POST['tripid'];
     $category = $_POST['category'];
-    $tripTitle = $_POST['tripTitle'];
+    $tripContent = $_POST['tripContent'];
     $departTime = $_POST['departTime'];
     $returnTime = $_POST['returnTime'];
     $lat = $_POST['lat'];
     $lgt = $_POST['lgt'];
-    $emergencyContactName = $_POST['emergencyContactName'];
-    $emergencyContactPhone = $_POST['emergencyContactPhone'];
-    $emergencyContactEmail = $_POST['emergencyContactEmail'];
-    $desc = $_POST['desc'];
+
     $imagefilename = "";
 
     //check trip records based on user id to get trip id
@@ -42,11 +37,10 @@ if (isset($_POST['userid']) &&isset($_POST['tripid'])&& isset($_POST['category']
         $tripid = $rows['maxid'] + 1;
 
 
-        $sql = "INSERT INTO Trips (userid,tripid,departTime,returnTime,tripTitle,
-emergencyContactName,emergencyContactPhone,emergencyContactEmail,category,tripdesc,lat,lgt,imagefilename)
-VALUES ('{$userid}','{$tripid}','{$departTime}','{$returnTime}','{$tripTitle}',
-'{$emergencyContactName}','{$emergencyContactPhone}','{$emergencyContactEmail}',
-'{$category}','{$desc}','{$lat}','{$lgt}','{$imagefilename}')";
+        $sql = "INSERT INTO Trips (userid,tripid,departTime,returnTime,tripContent,
+category,lat,lgt,imagefilename)
+VALUES ('{$userid}','{$tripid}','{$departTime}','{$returnTime}','{$tripContent}',
+'{$category}','{$lat}','{$lgt}','{$imagefilename}')";
 
 
         if (mysqli_query($conn, $sql)) {
@@ -58,11 +52,10 @@ VALUES ('{$userid}','{$tripid}','{$departTime}','{$returnTime}','{$tripTitle}',
     }
     else {
         //if there is no trip, tripid  = 1
-        $sql = "INSERT INTO Trips (userid,tripid,departTime,returnTime,tripTitle,
-emergencyContactName,emergencyContactPhone,emergencyContactEmail,category,tripdesc,lat,lgt,imagefilename)
-VALUES ('{$userid}','1','{$departTime}','{$returnTime}','{$tripTitle}',
-'{$emergencyContactName}','{$emergencyContactPhone}','{$emergencyContactEmail}',
-'{$category}','{$desc}','{$lat}','{$lgt}','')";
+        $sql = "INSERT INTO Trips (userid,tripid,departTime,returnTime,tripContent
+,category,lat,lgt,imagefilename)
+VALUES ('{$userid}','1','{$departTime}','{$returnTime}','{$tripContent}',
+'{$category}','{$lat}','{$lgt}','')";
 
         if (mysqli_query($conn, $sql)) {
             echo "New record created successfully";

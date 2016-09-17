@@ -16,16 +16,27 @@ if (isset($_POST['userid']) ) {
     }
     else
     {
-        $sql3 = "SELECT * FROM Trips WHERE userid = '$userid'";
-        $result3 = mysqli_query($conn, $sql3);
+        //get all trips based on userid
+        $sql2 = "SELECT * FROM Trips WHERE userid = '$userid'";
+        $result2 = mysqli_query($conn, $sql2);
 
-        while ($row = mysqli_fetch_assoc($result3))
+
+        while ($row = mysqli_fetch_assoc($result2))
         {
-//            $response["tripTitle"]= $row["tripTitle"];
-//            $response["departTime"]= $row["departTime"];
-//            $response["category"]= $row["category"];
             $rows[] = $row;
         }
+
+
+
+//        $sql3 = "SELECT * FROM TripPhotos WHERE userid = '$userid'";
+//        $result3 = mysqli_query($conn, $sql3);
+//
+//        while ($row = mysqli_fetch_assoc($result3))
+//        {
+//
+//            $rows[] = $row;
+//        }
+
         echo json_encode($rows);
     }
 
